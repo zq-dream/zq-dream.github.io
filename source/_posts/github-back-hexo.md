@@ -1,17 +1,17 @@
 ---
-title: 在Github上备份Hexo博客
-date: 2022-04-19 14:39:01
+title: 在github上备份hexo
+date: 2022-04-28 16:20:11
 categories:
 - 工具
 tags:
-- Hexo
-- Github
+- github
+- hexo
 ---
 ## 前言
 重做系统忘记备份hexo了，还好本地有备份markdown，本地的备份我也不是长期留存的，还是在github上做好备份吧。
 
 ## 个人备份习惯
-个人而言习惯于先备份文件再生成博客。即先执行`git add .`，`git commit -m "update"`，`git push -f`将博客备份完成，然后执行`hexo g -d`发布博客。
+个人而言习惯于先备份文件再生成博客。即先执行`git add .`，`git commit -m "hexo back"`，`git push -u origin master`将博客备份完成，然后执行`hexo g -d`发布博客。
 
 ### 备份博客的快捷命令
 通过`alias`，编辑一些命令的集合，这样就能通过使用`hd`将博客备份后再发布了
@@ -42,18 +42,22 @@ public/
 _multiconfig.yml
 ```
 
-### 提交备份到`github hexo`分支上
-将文件添加到暂存区
+### 提交备份到`github master`分支上
+指定远程仓库
+```shell
+git remote add origin git@github.com:zq-dream/zq-dream.github.io.git
 ```
+将文件添加到暂存区
+```shell
 git add .
 ```
 将暂存区文件提交到本地分支
-```
-git commit -m 'back'
+```shell
+git commit -m 'hexo back'
 ```
 将本地分支提交到远程分支
-```
-git push -u origin hexo
+```shell
+git push -u origin master
 ```
 
 
