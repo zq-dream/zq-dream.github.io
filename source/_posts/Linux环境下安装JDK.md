@@ -2,7 +2,9 @@
 title: Linux环境下安装JDK
 date: 2022-05-06 13:54:39
 categories:
+- 基础
 tags:
+- java
 ---
 # Linux环境下安装JDK
 >系统版本：CentOS Linux release 7.9.2009 (Core)
