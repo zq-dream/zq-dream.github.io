@@ -1,6 +1,6 @@
 ---
 title: 安装 PHP-FPM 7.4
-date: 2022-05-06 16:42:45
+date: 2022-05-06 16:52:45
 categories:
 - 工具
 tags:
