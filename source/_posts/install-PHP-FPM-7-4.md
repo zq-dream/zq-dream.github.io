@@ -4,7 +4,7 @@ date: 2022-05-07 10:28:12
 categories:
 - 工具
 tags:
--- PHP
+- PHP
 ---
 # 安装 PHP-FPM 7.4
 鉴于 CentOS 7 默认提供较旧的 PHP 版本 5.4，我们首先需要更新 yum 存储库
