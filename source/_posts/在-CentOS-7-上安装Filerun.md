@@ -6,9 +6,9 @@ categories:
 tags:
 ---
 # 前置环境
->Apache  
->MariaDB 10  
->PHP 7.4  
+>[Apache](https://zqiang.icu/2022/05/06/%E5%AE%89%E8%A3%85-Apache-Web-%E6%9C%8D%E5%8A%A1%E5%99%A8/)  
+>[MariaDB 10](https://zqiang.icu/2022/05/06/%E5%AE%89%E8%A3%85-MariaDB-10/)  
+>[PHP 7.4](https://zqiang.icu/2022/05/07/install-PHP-FPM-7-4/)  
 
 ## 配置数据库
 使用 root 帐户登录 MariaDB
