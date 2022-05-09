@@ -17,14 +17,25 @@ vim /etc/hosts
 192.168.0.103  dream103
 ```
 
-# 生成公私钥
+# 生成github和免密登录的公私钥
 ```shell
-ssh-keygen -t rsa
+ssh-keygen -t rsa -b 4096 -C "zqiang918@gmail.com"
+```
+
+# 配置全局git 用户和邮箱
+
+```shell
+git config --global user.name "zq-dream"
+git config --global user.email "zqiang918@gmail.com"
 ```
 
 # 授权
 将生成的公钥写入到授权文件
 ```shell
 cat id_rsa.pub >> authorized_keys
-chmod 600 authorized_keys
+```
+
+# 测试
+```shell
+ssh -T git@github.com 
 ```
