@@ -146,5 +146,5 @@ vim ~/.bashrc
 
 增加快捷命令
 ```python
-alisa hd='hexo clean && hexo g && hexo d'
+alias hd='git add . && git commit -m "hexo back" && git push -u origin master && hexo clean && hexo g && hexo d'
 ```
