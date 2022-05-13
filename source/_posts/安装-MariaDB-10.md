@@ -16,13 +16,11 @@ vim /etc/yum.repos.d/MariaDB10.repo
 
 添加以下配置
 ```shell
-# MariaDB 10.1 CentOS repository list - created 2016-01-18 09:58 UTC
-# http://mariadb.org/mariadb/repositories/
 [mariadb]
-name = MariaDB  
-baseurl = http://yum.mariadb.org/10.1/centos7-amd64  
-gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB  
-gpgcheck=1  
+name = MariaDB
+baseurl = http://mirrors.ustc.edu.cn/mariadb/yum/10.3/centos7-amd64/
+gpgkey=http://mirrors.ustc.edu.cn/mariadb/yum/RPM-GPG-KEY-MariaDB
+gpgcheck=1
 ```
 
 安装并运行
