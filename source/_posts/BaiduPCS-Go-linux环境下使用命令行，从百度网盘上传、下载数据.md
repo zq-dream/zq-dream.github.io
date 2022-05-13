@@ -36,12 +36,16 @@ baiduPCS-Go login -bduss=[BDUSS]
 
 ### 切换工作目录
 ```shell
-baiduPCS-Go cd `dir`
+baiduPCS-Go cd files
 ```
 
 ### 列出当前目录文件
 ```shell
 baiduPCS-Go ls
+```
+### 修改下载文件的储存目录
+```shell
+baiduPCS-Go config set -savedir=/files
 ```
 
 ### 下载文件
