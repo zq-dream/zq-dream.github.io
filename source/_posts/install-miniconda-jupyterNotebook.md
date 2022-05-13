@@ -44,7 +44,7 @@ vim ~/.jupyter/jupyter_notebook_config.py
 增加以下属性
 ```python
 c.NotebookApp.ip='*'                                     # 就是设置所有ip皆可访问  
-# 设置密码后生成的密钥'  
+# 设置密码后生成的密钥  
 c.NotebookApp.password = u'argon2:$argon2id$v=19$m=10240,t=10,p=8$fCXQDWpf2jRqi5rXorz7Rg$iAz+u1S/3J7pP49MnBnZi2uSQdcbti3/M1B/LV/4Da0'
 c.NotebookApp.open_browser = False                       # 禁止自动打开浏览器  
 c.NotebookApp.port =8889                                 #这里是你选择使用的端口 
@@ -84,5 +84,5 @@ vim ~/.bashrc
 
 增加快捷命令
 ```python
-alisa notebook='nohup jupyter notebook --allow-root >> ~/notebook.log 2>&1 &'
+alias notebook='nohup jupyter notebook --allow-root >> ~/notebook.log 2>&1 &'
 ```
