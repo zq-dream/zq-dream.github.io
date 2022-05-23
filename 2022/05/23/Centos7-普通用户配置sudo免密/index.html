@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>配置SSH免密登录 | Hexo</title>
-  <meta name="keywords" content=" ssh ">
-  <meta name="description" content="配置SSH免密登录 | Hexo">
+  <title>Centos7 普通用户配置sudo免密 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Centos7 普通用户配置sudo免密 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="起因自己学习的环境需要执行一条root权限的命令时，每次都要用sudo命令然后再确认密码，非常不方便修改配置sudo免密后方便很多 修改配置用root用户修改 &#x2F;etc&#x2F;sudoers可以给用户权限，也可以给某个用户组权限 user_name  ALL&#x3D;(ALL) ALL         # 允许user_name执行sudo命令(需要输入密码). %user_group ALL&#x3D;(ALL) AL">
 <meta property="og:type" content="article">
@@ -441,9 +441,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-配置SSH免密登录" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Centos7-普通用户配置sudo免密" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">配置SSH免密登录</h1>
+        <h1 class="article-title">Centos7 普通用户配置sudo免密</h1>
     
     <div class="article-meta">
         
@@ -453,27 +453,20 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="工具">工具</a>
+            <a  data-rel="基础">基础</a>
             
         </span>
         
         
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color4">ssh</a>
-            
-        </span>
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2022-05-23 18:36:40'>2022-05-23 18:35</time>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-05-23 18:24:03'>2022-05-23 13:03</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字数:197</span>
+        <span>字数:182</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -492,7 +485,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%98%A0%E5%B0%84"><span class="toc-text">配置映射</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%88%90github%E5%92%8C%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E7%9A%84%E5%85%AC%E7%A7%81%E9%92%A5"><span class="toc-text">生成github和免密登录的公私钥</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%88%E6%9D%83"><span class="toc-text">授权</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-text">测试</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-text">修改配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%8B%E5%A6%82"><span class="toc-text">例如</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -508,30 +501,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="配置映射"><a href="#配置映射" class="headerlink" title="配置映射"></a>配置映射</h1><p>配置 ip 地址和主机名映射</p>
-<pre><code class="shell">vim /etc/hosts
+        <h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>自己学习的环境需要执行一条root权限的命令时，每次都要用sudo命令然后再确认密码，非常不方便<br>修改配置sudo免密后方便很多</p>
+<h1 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h1><p>用root用户修改 <code>/etc/sudoers</code><br>可以给用户权限，也可以给某个用户组权限</p>
+<pre><code class="shell">user_name  ALL=(ALL) ALL         # 允许user_name执行sudo命令(需要输入密码).
+%user_group ALL=(ALL) ALL        # 允许user_group执行sudo命令(需要输入密码).
+user_name  ALL=(ALL) NOPASSWD: ALL  # 允许user_name执行sudo命令(不需要输入密码).
+%user_group ALL=(ALL) NOPASSWD: ALL # 允许user_group执行sudo命令(不需要输入密码).
 </code></pre>
-<p>添加映射信息</p>
-<pre><code>192.168.0.11  dream11
-192.168.0.12  dream12
-192.168.0.13  dream13
-</code></pre>
-<h1 id="生成github和免密登录的公私钥"><a href="#生成github和免密登录的公私钥" class="headerlink" title="生成github和免密登录的公私钥"></a>生成github和免密登录的公私钥</h1><p>ssh-keygen命令用于为 <code>ssh</code> 生成、管理和转换认证密钥，它支持RSA和DSA两种认证密钥</p>
-<ul>
-<li><code>-t</code> 指定认证类型</li>
-<li><code>-b</code> 指定密钥长度</li>
-<li><code>-C</code> 添加注释<pre><code class="shell">ssh-keygen -t rsa -b 4096 -C &quot;zqiang918@gmail.com&quot;
-</code></pre>
-</li>
-</ul>
-<h1 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h1><p>ssh-copy-id命令可以把本地主机的公钥复制到远程主机的authorized_keys文件上<br>ssh-copy-id命令也会给远程主机的用户主目录（home）下的 <code>~/.ssh</code> 和 <code>~/.ssh/authorized_keys</code> 设置合适的权限</p>
-<ul>
-<li><code>-i</code> 指定认证文件(公钥)</li>
-<li><code>-p</code> port 指定连接的端口</li>
-</ul>
-<pre><code class="shell">ssh-copy-id dream@dream11
-</code></pre>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><pre><code class="shell">ssh dream11
+<h1 id="例如"><a href="#例如" class="headerlink" title="例如"></a>例如</h1><p>给用户免密sudo权限</p>
+<pre><code>## Allow root to run any commands anywhere 
+root    ALL=(ALL)       ALL
+dream   ALL=(ALL)       NOPASSWD: ALL
 </code></pre>
 
       
