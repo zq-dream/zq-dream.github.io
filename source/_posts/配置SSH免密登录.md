@@ -1,6 +1,6 @@
 ---
 title: 配置SSH免密登录
-date: 2022-05-07 13:03:00
+date: 2022-05-23 13:03:00
 categories:
 - 工具
 tags:
@@ -13,30 +13,31 @@ vim /etc/hosts
 ```
 添加映射信息
 ```
-192.168.0.101  dream101
-192.168.0.102  dream102
-192.168.0.103  dream103
+192.168.0.11  dream11
+192.168.0.12  dream12
+192.168.0.13  dream13
 ```
 
 # 生成github和免密登录的公私钥
+ssh-keygen命令用于为 `ssh` 生成、管理和转换认证密钥，它支持RSA和DSA两种认证密钥
+- `-t` 指定认证类型
+- `-b` 指定密钥长度
+- `-C` 添加注释
 ```shell
 ssh-keygen -t rsa -b 4096 -C "zqiang918@gmail.com"
 ```
 
-# 配置全局git 用户和邮箱
-
-```shell
-git config --global user.name "zq-dream"
-git config --global user.email "zqiang918@gmail.com"
-```
-
 # 授权
-将生成的公钥写入到授权文件
+ssh-copy-id命令可以把本地主机的公钥复制到远程主机的authorized_keys文件上  
+ssh-copy-id命令也会给远程主机的用户主目录（home）下的 `~/.ssh` 和 `~/.ssh/authorized_keys` 设置合适的权限
+- `-i` 指定认证文件(公钥)
+- `-p` port 指定连接的端口
+
 ```shell
-cat id_rsa.pub >> authorized_keys
+ssh-copy-id dream@dream11
 ```
 
 # 测试
 ```shell
-ssh -T git@github.com 
+ssh dream11
 ```
