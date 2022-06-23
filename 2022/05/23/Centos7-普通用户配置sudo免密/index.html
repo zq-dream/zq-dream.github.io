@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="Centos7 普通用户配置sudo免密 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Hive常用DDL操作1. 数据库1.1 查看数据列表SHOW DATABASES;  1.2 切换数据库USE database_name;  1.3 新建数据库语法： CREATE (DATABASE|SCHEMA) [IF NOT EXISTS] database_name   --DATABASE|SCHEMA 是等价的   [COMMENT database_comment] --数据库">
+<meta name="description" content="Hive常用DML操作1. 加载文件数据到表语法： LOAD DATA [LOCAL] INPATH &#39;filepath&#39; [OVERWRITE]  INTO TABLE tablename [PARTITION (partcol1&#x3D;val1, partcol2&#x3D;val2 ...)]   LOCAL 关键字代表从本地文件系统加载文件，省略则代表从 HDFS 上加载文件：  从本地文">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hive常用DDL操作">
-<meta property="og:url" content="http://example.com/2022/06/23/Hive-DDL/index.html">
+<meta property="og:title" content="Hive常用DML操作">
+<meta property="og:url" content="http://example.com/2022/06/23/Hive-DML/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Hive常用DDL操作1. 数据库1.1 查看数据列表SHOW DATABASES;  1.2 切换数据库USE database_name;  1.3 新建数据库语法： CREATE (DATABASE|SCHEMA) [IF NOT EXISTS] database_name   --DATABASE|SCHEMA 是等价的   [COMMENT database_comment] --数据库">
+<meta property="og:description" content="Hive常用DML操作1. 加载文件数据到表语法： LOAD DATA [LOCAL] INPATH &#39;filepath&#39; [OVERWRITE]  INTO TABLE tablename [PARTITION (partcol1&#x3D;val1, partcol2&#x3D;val2 ...)]   LOCAL 关键字代表从本地文件系统加载文件，省略则代表从 HDFS 上加载文件：  从本地文">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-23T01:11:59.000Z">
-<meta property="article:modified_time" content="2022-06-23T01:26:00.716Z">
+<meta property="article:published_time" content="2022-06-23T02:06:54.000Z">
+<meta property="article:modified_time" content="2022-06-23T02:08:00.092Z">
 <meta property="article:author" content="zhangqiang">
 <meta property="article:tag" content="Hive">
 <meta name="twitter:card" content="summary">
@@ -115,7 +115,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(19)</small>
+                <small>(20)</small>
             
         </div>
     </li>
@@ -182,7 +182,7 @@
                     <div data-rel="Hive">
                         
                         Hive
-                        <small>(1)</small>
+                        <small>(2)</small>
                         
                     </div>
                     
@@ -203,8 +203,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="19">
-<input type="hidden" id="yelog_site_word_count" value="9.3k">
+<input type="hidden" id="yelog_site_posts_number" value="20">
+<input type="hidden" id="yelog_site_word_count" value="11.6k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -323,6 +323,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Hive "
+           href="/2022/06/23/Hive-DML/"
+           data-tag="Hive"
+           data-author="" >
+            <span class="post-title" title="Hive常用DML操作">Hive常用DML操作</span>
+            <span class="post-date" title="2022-06-23 10:06:54">2022/06/23</span>
+        </a>
         
         <a  class="全部文章 Hive "
            href="/2022/06/23/Hive-DDL/"
