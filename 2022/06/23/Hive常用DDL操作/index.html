@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Oracle调优 | Hexo</title>
-  <meta name="keywords" content=" Oracle ">
-  <meta name="description" content="Oracle调优 | Hexo">
+  <title>Hive常用DDL操作 | Hexo</title>
+  <meta name="keywords" content=" Hive ">
+  <meta name="description" content="Hive常用DDL操作 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Hive常用DDL操作1. 数据库1.1 查看数据列表SHOW DATABASES;  1.2 切换数据库USE database_name;  1.3 新建数据库语法： CREATE (DATABASE|SCHEMA) [IF NOT EXISTS] database_name   --DATABASE|SCHEMA 是等价的   [COMMENT database_comment] --数据库">
 <meta property="og:type" content="article">
@@ -494,9 +494,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Oracle调优" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Hive常用DDL操作" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Oracle调优</h1>
+        <h1 class="article-title">Hive常用DDL操作</h1>
     
     <div class="article-meta">
         
@@ -506,7 +506,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="性能调优">性能调优</a>
+            <a  data-rel="Hive">Hive</a>
             
         </span>
         
@@ -514,19 +514,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">Oracle</a>
+            <a class="color5">Hive</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-05-25 14:03:31'>2022-05-25 14:02</time>
+            发布时间 : <time class="date" title='最后更新: 2022-06-23 09:12:47'>2022-06-23 09:11</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:312</span>
+        <span>字数:1.6k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -545,7 +545,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Oracle%E6%8A%80%E8%83%BD%E5%A2%9E%E5%BC%BA%E5%9F%B9%E8%AE%AD"><span class="toc-text">Oracle技能增强培训</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E9%A2%91inseter%E4%BC%98%E5%8C%96"><span class="toc-text">高频inseter优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95"><span class="toc-text">联合索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%94%AE%E5%AD%97%E6%AE%B5%E6%97%A0%E7%B4%A2%E5%BC%95"><span class="toc-text">外键字段无索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E6%95%B4%E4%B8%AA%E6%89%B9%E9%87%8F%E8%BF%87%E7%A8%8B%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A4%A7%E4%BA%8B%E5%8A%A1"><span class="toc-text">避免整个批量过程只有一个大事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LOB%E5%AD%97%E6%AE%B5%E4%B8%8D%E8%83%BD%E8%AE%BE%E7%BD%AE%E4%B8%BAnologging"><span class="toc-text">LOB字段不能设置为nologging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8varchar2-char-number%E5%AD%98%E5%82%A8%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AD%97%E6%AE%B5"><span class="toc-text">不建议使用varchar2&#x2F;char&#x2F;number存储时间类型的字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E4%B8%93%E5%88%97%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">行专列函数的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="toc-text">避免字符类型隐式转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E8%A1%A8%E5%88%86%E5%8C%BA%E5%AD%98%E5%82%A8"><span class="toc-text">大表分区存储</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hive%E5%B8%B8%E7%94%A8DDL%E6%93%8D%E4%BD%9C"><span class="toc-text">Hive常用DDL操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1. 数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%88%97%E8%A1%A8"><span class="toc-text">1.1 查看数据列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%88%87%E6%8D%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.2 切换数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.3 新建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%A1%E6%81%AF"><span class="toc-text">1.4 查看数据库信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.5 删除数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A1%A8"><span class="toc-text">2. 表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-text">2.1 创建表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E5%BB%BA%E8%A1%A8%E8%AF%AD%E6%B3%95"><span class="toc-text">2.1.1 建表语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-%E5%86%85%E9%83%A8%E8%A1%A8"><span class="toc-text">2.1.2 内部表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-%E5%A4%96%E9%83%A8%E8%A1%A8"><span class="toc-text">2.1.3 外部表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-4-%E5%88%86%E5%8C%BA%E8%A1%A8"><span class="toc-text">2.1.4 分区表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-5-%E5%88%86%E6%A1%B6%E8%A1%A8"><span class="toc-text">2.1.5 分桶表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-6-%E5%80%BE%E6%96%9C%E8%A1%A8"><span class="toc-text">2.1.6 倾斜表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-7-%E4%B8%B4%E6%97%B6%E8%A1%A8"><span class="toc-text">2.1.7 临时表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-8-CTAS%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-text">2.1.8 CTAS创建表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-9-%E5%A4%8D%E5%88%B6%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-text">2.1.9 复制表结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-10-%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%E5%88%B0%E8%A1%A8"><span class="toc-text">2.1.10 加载数据到表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E4%BF%AE%E6%94%B9%E8%A1%A8"><span class="toc-text">2.2 修改表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E9%87%8D%E5%91%BD%E5%90%8D%E8%A1%A8"><span class="toc-text">2.2.1 重命名表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E4%BF%AE%E6%94%B9%E5%88%97"><span class="toc-text">2.2.2 修改列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-%E6%96%B0%E5%A2%9E%E5%88%97"><span class="toc-text">2.2.3 新增列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%B8%85%E7%A9%BA%E8%A1%A8-%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="toc-text">2.3 清空表&#x2F;删除表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-%E6%B8%85%E7%A9%BA%E8%A1%A8"><span class="toc-text">2.3.1 清空表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="toc-text">2.3.2 删除表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-text">2.4其他命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-1-Describe"><span class="toc-text">2.4.1 Describe</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-Show"><span class="toc-text">2.4.2 Show</span></a></li></ol></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -561,47 +561,230 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Oracle技能增强培训"><a href="#Oracle技能增强培训" class="headerlink" title="Oracle技能增强培训"></a>Oracle技能增强培训</h1><h2 id="高频inseter优化"><a href="#高频inseter优化" class="headerlink" title="高频inseter优化"></a>高频inseter优化</h2><p>使用hash分区表</p>
-<h2 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h2><p>对重复索引的优化</p>
-<h2 id="外键字段无索引"><a href="#外键字段无索引" class="headerlink" title="外键字段无索引"></a>外键字段无索引</h2><p>非必要情况不要使用外键<br>优化方案：</p>
-<ul>
-<li>在外键字段上建索引<br>如果满足以下三个条件，则不用建索引</li>
-<li>不会删除父表记录</li>
-<li>不会更新父表主键字段</li>
-<li>不会关联父表和子表，或者谓词中没有使用外键字段过滤数据</li>
-</ul>
-<h2 id="避免整个批量过程只有一个大事务"><a href="#避免整个批量过程只有一个大事务" class="headerlink" title="避免整个批量过程只有一个大事务"></a>避免整个批量过程只有一个大事务</h2><p>问题场景：</p>
-<ul>
-<li>一个大批量的commit，要么全部成功，要么全部失败  </li>
-</ul>
-<p>优化方案：</p>
-<ul>
-<li>根据实际跑批逻辑分为多阶段的小事务分别commit</li>
-</ul>
-<p>例子</p>
-<pre><code class="sql">for i in 1..24 loop
-  select * from t_tab 
-  where time between add_months(sysdate,-1*i) and add_months(sysdate,-1*i+1)
-  commit;
-end;
-
-
+        <h1 id="Hive常用DDL操作"><a href="#Hive常用DDL操作" class="headerlink" title="Hive常用DDL操作"></a>Hive常用DDL操作</h1><h2 id="1-数据库"><a href="#1-数据库" class="headerlink" title="1. 数据库"></a>1. 数据库</h2><h3 id="1-1-查看数据列表"><a href="#1-1-查看数据列表" class="headerlink" title="1.1 查看数据列表"></a>1.1 查看数据列表</h3><pre><code>SHOW DATABASES;
 </code></pre>
-<h2 id="LOB字段不能设置为nologging"><a href="#LOB字段不能设置为nologging" class="headerlink" title="LOB字段不能设置为nologging"></a>LOB字段不能设置为nologging</h2><p>优化方案：</p>
+<h3 id="1-2-切换数据库"><a href="#1-2-切换数据库" class="headerlink" title="1.2 切换数据库"></a>1.2 切换数据库</h3><pre><code>USE database_name;
+</code></pre>
+<h3 id="1-3-新建数据库"><a href="#1-3-新建数据库" class="headerlink" title="1.3 新建数据库"></a>1.3 新建数据库</h3><p>语法：</p>
+<pre><code>CREATE (DATABASE|SCHEMA) [IF NOT EXISTS] database_name   --DATABASE|SCHEMA 是等价的
+  [COMMENT database_comment] --数据库注释
+  [LOCATION hdfs_path] --存储在 HDFS 上的位置
+  [WITH DBPROPERTIES (property_name=property_value, ...)]; --指定额外属性
+</code></pre>
+<p>示例：</p>
+<pre><code>CREATE DATABASE IF NOT EXISTS hive_test
+  COMMENT &#39;hive database for test&#39;
+  WITH DBPROPERTIES (&#39;create&#39;=&#39;dream&#39;);
+</code></pre>
+<h3 id="1-4-查看数据库信息"><a href="#1-4-查看数据库信息" class="headerlink" title="1.4 查看数据库信息"></a>1.4 查看数据库信息</h3><p>语法：</p>
+<pre><code>DESC DATABASE [EXTENDED] db_name; --EXTENDED 表示是否显示额外属性
+</code></pre>
+<p>示例：</p>
+<pre><code>DESC DATABASE  EXTENDED hive_test;
+</code></pre>
+<h3 id="1-5-删除数据库"><a href="#1-5-删除数据库" class="headerlink" title="1.5 删除数据库"></a>1.5 删除数据库</h3><p>语法：</p>
+<pre><code>DROP (DATABASE|SCHEMA) [IF EXISTS] database_name [RESTRICT|CASCADE];
+</code></pre>
 <ul>
-<li>对应的表及LOB对象设置为logging</li>
+<li>默认行为是 RESTRICT，如果数据库中存在表则删除失败。要想删除库及其中的表，可以使用 CASCADE 级联删除。  </li>
 </ul>
-<h2 id="不建议使用varchar2-char-number存储时间类型的字段"><a href="#不建议使用varchar2-char-number存储时间类型的字段" class="headerlink" title="不建议使用varchar2/char/number存储时间类型的字段"></a>不建议使用varchar2/char/number存储时间类型的字段</h2><p>优化方案：</p>
+<p>示例：</p>
+<pre><code>DROP DATABASE IF EXISTS hive_test CASCADE;
+</code></pre>
+<h2 id="2-表"><a href="#2-表" class="headerlink" title="2. 表"></a>2. 表</h2><h3 id="2-1-创建表"><a href="#2-1-创建表" class="headerlink" title="2.1 创建表"></a>2.1 创建表</h3><h4 id="2-1-1-建表语法"><a href="#2-1-1-建表语法" class="headerlink" title="2.1.1 建表语法"></a>2.1.1 建表语法</h4><p>语法：</p>
+<pre><code>CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name     --表名
+  [(col_name data_type [COMMENT col_comment],
+    ... [constraint_specification])]  --列名 列数据类型
+  [COMMENT table_comment]   --表描述
+  [PARTITIONED BY (col_name data_type [COMMENT col_comment], ...)]  --分区表分区规则
+  [
+    CLUSTERED BY (col_name, col_name, ...) 
+   [SORTED BY (col_name [ASC|DESC], ...)] INTO num_buckets BUCKETS
+  ]  --分桶表分桶规则
+  [SKEWED BY (col_name, col_name, ...) ON ((col_value, col_value, ...), (col_value, col_value, ...), ...)  
+   [STORED AS DIRECTORIES] 
+  ]  --指定倾斜列和值
+  [
+   [ROW FORMAT row_format]    
+   [STORED AS file_format]
+     | STORED BY &#39;storage.handler.class.name&#39; [WITH SERDEPROPERTIES (...)]  
+  ]  -- 指定行分隔符、存储文件格式或采用自定义存储格式
+  [LOCATION hdfs_path]  -- 指定表的存储位置
+  [TBLPROPERTIES (property_name=property_value, ...)]  --指定表的属性
+  [AS select_statement];   --从查询结果创建表
+</code></pre>
+<h4 id="2-1-2-内部表"><a href="#2-1-2-内部表" class="headerlink" title="2.1.2 内部表"></a>2.1.2 内部表</h4><pre><code>  CREATE TABLE emp(
+    empno INT,
+    ename STRING,
+    job STRING,
+    mgr INT,
+    hiredate TIMESTAMP,
+    sal DECIMAL(7,2),
+    comm DECIMAL(7,2),
+    deptno INT)
+    ROW FORMAT DELIMITED FIELDS TERMINATED BY &quot;\t&quot;;
+</code></pre>
+<h4 id="2-1-3-外部表"><a href="#2-1-3-外部表" class="headerlink" title="2.1.3 外部表"></a>2.1.3 外部表</h4><pre><code>  CREATE EXTERNAL TABLE emp_external(
+    empno INT,
+    ename STRING,
+    job STRING,
+    mgr INT,
+    hiredate TIMESTAMP,
+    sal DECIMAL(7,2),
+    comm DECIMAL(7,2),
+    deptno INT)
+    ROW FORMAT DELIMITED FIELDS TERMINATED BY &quot;\t&quot;
+    LOCATION &#39;/hive/emp_external&#39;;
+</code></pre>
+<h4 id="2-1-4-分区表"><a href="#2-1-4-分区表" class="headerlink" title="2.1.4 分区表"></a>2.1.4 分区表</h4><pre><code>  CREATE EXTERNAL TABLE emp_partition(
+    empno INT,
+    ename STRING,
+    job STRING,
+    mgr INT,
+    hiredate TIMESTAMP,
+    sal DECIMAL(7,2),
+    comm DECIMAL(7,2)
+    )
+    PARTITIONED BY (deptno INT)   -- 按照部门编号进行分区
+    ROW FORMAT DELIMITED FIELDS TERMINATED BY &quot;\t&quot;
+    LOCATION &#39;/hive/emp_partition&#39;;
+</code></pre>
+<h4 id="2-1-5-分桶表"><a href="#2-1-5-分桶表" class="headerlink" title="2.1.5 分桶表"></a>2.1.5 分桶表</h4><pre><code>  CREATE EXTERNAL TABLE emp_bucket(
+    empno INT,
+    ename STRING,
+    job STRING,
+    mgr INT,
+    hiredate TIMESTAMP,
+    sal DECIMAL(7,2),
+    comm DECIMAL(7,2),
+    deptno INT)
+    CLUSTERED BY(empno) SORTED BY(empno ASC) INTO 4 BUCKETS  --按照员工编号散列到四个 bucket 中
+    ROW FORMAT DELIMITED FIELDS TERMINATED BY &quot;\t&quot;
+    LOCATION &#39;/hive/emp_bucket&#39;;
+</code></pre>
+<h4 id="2-1-6-倾斜表"><a href="#2-1-6-倾斜表" class="headerlink" title="2.1.6 倾斜表"></a>2.1.6 倾斜表</h4><pre><code>  CREATE EXTERNAL TABLE emp_skewed(
+    empno INT,
+    ename STRING,
+    job STRING,
+    mgr INT,
+    hiredate TIMESTAMP,
+    sal DECIMAL(7,2),
+    comm DECIMAL(7,2)
+    )
+    SKEWED BY (empno) ON (66,88,100)  --指定 empno 的倾斜值 66,88,100
+    ROW FORMAT DELIMITED FIELDS TERMINATED BY &quot;\t&quot;
+    LOCATION &#39;/hive/emp_skewed&#39;;   
+</code></pre>
+<h4 id="2-1-7-临时表"><a href="#2-1-7-临时表" class="headerlink" title="2.1.7 临时表"></a>2.1.7 临时表</h4><p>临时表仅对当前 session 可见，临时表的数据将存储在用户的暂存目录中，并在会话结束后删除。如果临时表与永久表表名相同，则对该表名的任何引用都将解析为临时表，而不是永久表。临时表还具有以下两个限制：</p>
 <ul>
-<li>时间字段使用date/timestamp类型</li>
+<li>不支持分区列；</li>
+<li>不支持创建索引。<pre><code>CREATE TEMPORARY TABLE emp_temp(
+  empno INT,
+  ename STRING,
+  job STRING,
+  mgr INT,
+  hiredate TIMESTAMP,
+  sal DECIMAL(7,2),
+  comm DECIMAL(7,2)
+  )
+  ROW FORMAT DELIMITED FIELDS TERMINATED BY &quot;\t&quot;;
+</code></pre>
+<h4 id="2-1-8-CTAS创建表"><a href="#2-1-8-CTAS创建表" class="headerlink" title="2.1.8 CTAS创建表"></a>2.1.8 CTAS创建表</h4>支持从查询语句的结果创建表：<pre><code>CREATE TABLE emp_copy AS SELECT * FROM emp WHERE deptno=&#39;20&#39;;
+</code></pre>
+<h4 id="2-1-9-复制表结构"><a href="#2-1-9-复制表结构" class="headerlink" title="2.1.9 复制表结构"></a>2.1.9 复制表结构</h4>语法：<pre><code>CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name  --创建表表名
+ LIKE existing_table_or_view_name  --被复制表的表名
+ [LOCATION hdfs_path]; --存储位置
+</code></pre>
+</li>
 </ul>
-<h2 id="行专列函数的使用"><a href="#行专列函数的使用" class="headerlink" title="行专列函数的使用"></a>行专列函数的使用</h2><p>不建议使用WM_CONCAT，12以后的版本不支持<br>优化方案：</p>
+<p>示例：</p>
+<pre><code>CREATE TEMPORARY EXTERNAL TABLE  IF NOT EXISTS  emp_co  LIKE emp
+</code></pre>
+<h4 id="2-1-10-加载数据到表"><a href="#2-1-10-加载数据到表" class="headerlink" title="2.1.10 加载数据到表"></a>2.1.10 加载数据到表</h4><p>加载数据到表中属于 DML 操作，这里为了方便测试，先简单介绍一下加载本地数据到表中：</p>
+<pre><code>-- 加载数据到 emp 表中
+load data local inpath &quot;/usr/file/emp.txt&quot; into table emp;
+</code></pre>
+<p>其中 emp.txt 的内容如下</p>
+<pre><code>7369    SMITH    CLERK    7902    1980-12-17 00:00:00    800.00        20
+7499    ALLEN    SALESMAN    7698    1981-02-20 00:00:00    1600.00    300.00    30
+7521    WARD    SALESMAN    7698    1981-02-22 00:00:00    1250.00    500.00    30
+7566    JONES    MANAGER    7839    1981-04-02 00:00:00    2975.00        20
+7654    MARTIN    SALESMAN    7698    1981-09-28 00:00:00    1250.00    1400.00    30
+7698    BLAKE    MANAGER    7839    1981-05-01 00:00:00    2850.00        30
+7782    CLARK    MANAGER    7839    1981-06-09 00:00:00    2450.00        10
+7788    SCOTT    ANALYST    7566    1987-04-19 00:00:00    1500.00        20
+7839    KING    PRESIDENT        1981-11-17 00:00:00    5000.00        10
+7844    TURNER    SALESMAN    7698    1981-09-08 00:00:00    1500.00    0.00    30
+7876    ADAMS    CLERK    7788    1987-05-23 00:00:00    1100.00        20
+7900    JAMES    CLERK    7698    1981-12-03 00:00:00    950.00        30
+7902    FORD    ANALYST    7566    1981-12-03 00:00:00    3000.00        20
+7934    MILLER    CLERK    7782    1982-01-23 00:00:00    1300.00        10
+</code></pre>
+<h3 id="2-2-修改表"><a href="#2-2-修改表" class="headerlink" title="2.2 修改表"></a>2.2 修改表</h3><h4 id="2-2-1-重命名表"><a href="#2-2-1-重命名表" class="headerlink" title="2.2.1 重命名表"></a>2.2.1 重命名表</h4><p>语法：</p>
+<pre><code>ALTER TABLE table_name RENAME TO new_table_name;
+</code></pre>
+<p>示例：</p>
+<pre><code>ALTER TABLE emp_temp RENAME TO new_emp; --把 emp_temp 表重命名为 new_emp
+</code></pre>
+<h4 id="2-2-2-修改列"><a href="#2-2-2-修改列" class="headerlink" title="2.2.2 修改列"></a>2.2.2 修改列</h4><p>语法：</p>
+<pre><code>ALTER TABLE table_name [PARTITION partition_spec] CHANGE [COLUMN] col_old_name col_new_name column_type
+  [COMMENT col_comment] [FIRST|AFTER column_name] [CASCADE|RESTRICT];
+</code></pre>
+<p>示例：</p>
+<pre><code>-- 修改字段名和类型
+ALTER TABLE emp_temp CHANGE empno empno_new INT;
+ 
+-- 修改字段 sal 的名称 并将其放置到 empno 字段后
+ALTER TABLE emp_temp CHANGE sal sal_new decimal(7,2)  AFTER ename;
+
+-- 为字段增加注释
+ALTER TABLE emp_temp CHANGE mgr mgr_new INT COMMENT &#39;this is column mgr&#39;;
+</code></pre>
+<h4 id="2-2-3-新增列"><a href="#2-2-3-新增列" class="headerlink" title="2.2.3 新增列"></a>2.2.3 新增列</h4><pre><code>ALTER TABLE emp_temp ADD COLUMNS (address STRING COMMENT &#39;home address&#39;);
+</code></pre>
+<h3 id="2-3-清空表-删除表"><a href="#2-3-清空表-删除表" class="headerlink" title="2.3 清空表/删除表"></a>2.3 清空表/删除表</h3><h4 id="2-3-1-清空表"><a href="#2-3-1-清空表" class="headerlink" title="2.3.1 清空表"></a>2.3.1 清空表</h4><p>语法：</p>
+<pre><code>-- 清空整个表或表指定分区中的数据
+TRUNCATE TABLE table_name [PARTITION (partition_column = partition_col_value,  ...)];
+</code></pre>
+<p>示例：</p>
+<pre><code>TRUNCATE TABLE emp_mgt_ptn PARTITION (deptno=20);
+</code></pre>
+<h4 id="2-3-2-删除表"><a href="#2-3-2-删除表" class="headerlink" title="2.3.2 删除表"></a>2.3.2 删除表</h4><p>语法：</p>
+<pre><code>DROP TABLE [IF EXISTS] table_name [PURGE]; 
+</code></pre>
 <ul>
-<li></li>
+<li>内部表：不仅会删除表的元数据，同时会删除 HDFS 上的数据；</li>
+<li>外部表：只会删除表的元数据，不会删除 HDFS 上的数据；</li>
+<li>删除视图引用的表时，不会给出警告（但视图已经无效了，必须由用户删除或重新创建）。<h3 id="2-4其他命令"><a href="#2-4其他命令" class="headerlink" title="2.4其他命令"></a>2.4其他命令</h3><h4 id="2-4-1-Describe"><a href="#2-4-1-Describe" class="headerlink" title="2.4.1 Describe"></a>2.4.1 Describe</h4>查看数据库：<pre><code>DESCRIBE|Desc DATABASE [EXTENDED] db_name;  --EXTENDED 是否显示额外属性
+</code></pre>
+查看表：<pre><code>DESCRIBE|Desc [EXTENDED|FORMATTED] table_name --FORMATTED 以友好的展现方式查看表详情
+</code></pre>
+<h4 id="2-4-2-Show"><a href="#2-4-2-Show" class="headerlink" title="2.4.2 Show"></a>2.4.2 Show</h4></li>
 </ul>
-<h2 id="避免字符类型隐式转换"><a href="#避免字符类型隐式转换" class="headerlink" title="避免字符类型隐式转换"></a>避免字符类型隐式转换</h2><p>问题场景：</p>
-<p>优化方案：</p>
-<h2 id="大表分区存储"><a href="#大表分区存储" class="headerlink" title="大表分区存储"></a>大表分区存储</h2>
+<ol>
+<li>查看数据库列表<br>语法：<pre><code>SHOW (DATABASES|SCHEMAS) [LIKE &#39;identifier_with_wildcards&#39;];
+</code></pre>
+示例：<pre><code>SHOW DATABASES like &#39;hive*&#39;;
+</code></pre>
+LIKE 子句允许使用正则表达式进行过滤，但是 SHOW 语句当中的 LIKE 子句只支持 <code>*</code>（通配符）和 <code>|</code>（条件或）两个符号。例如 <code>employees</code>，<code>emp *</code>，<code>emp * | * ees</code>，所有这些都将匹配名为 <code>employees</code> 的数据库。</li>
+<li>查看表的列表<br>语法：<pre><code>SHOW TABLES [IN database_name] [&#39;identifier_with_wildcards&#39;];
+</code></pre>
+</li>
+</ol>
+<p>示例：</p>
+<pre><code>SHOW TABLES IN default;
+</code></pre>
+<ol start="3">
+<li>查看视图列表<pre><code>SHOW VIEWS [IN/FROM database_name] [LIKE &#39;pattern_with_wildcards&#39;];   --仅支持 Hive 2.2.0 +
+</code></pre>
+</li>
+<li>查看表的分区列表<pre><code>SHOW PARTITIONS table_name;
+</code></pre>
+SHOW PARTITIONS table_name;<pre><code>SHOW CREATE TABLE ([db_name.]table_name|view_name);
+</code></pre>
+</li>
+</ol>
+
       
        <hr><span style="font-style: italic;color: gray;"> 11 </span>
     </div>
