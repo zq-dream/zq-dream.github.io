@@ -13,7 +13,7 @@ tags:
 ### 1.Nodejs
 #### 下载
 ```
-wget https://nodejs.org/dist/latest-v17.x/node-v17.9.0-linux-x64.tar.xz
+wget https://nodejs.org/dist/v17.9.0/node-v17.9.0-linux-x64.tar.xz
 ```
 
 #### 解压
