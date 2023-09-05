@@ -1,5 +1,5 @@
 ---
-title: install-mailx
+title: centos使用mailx发送邮件
 date: 2023-09-05 15:28:25
 categories:
 - Linux
