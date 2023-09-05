@@ -6,6 +6,8 @@ categories:
 tags:
 - github
 - hexo
+- git
+- nodejs
 ---
 ## 前置环境准备
 我是用的是Centos7.9.2009(宝塔Linux面板)
