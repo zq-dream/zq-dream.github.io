@@ -80,7 +80,7 @@ miit:
   url: http://beian.miit.gov.cn/ # 默认链接为 http://beian.miit.gov.cn/
 
 
-reward: false
+reward: true
 # true 开启打赏功能
 
 searchAll: false
