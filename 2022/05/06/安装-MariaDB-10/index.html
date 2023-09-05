@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>安装 MariaDB 10 | Hexo</title>
+  <meta name="keywords" content=" mysql ">
+  <meta name="description" content="安装 MariaDB 10 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Hive常用DML操作1. 加载文件数据到表语法： LOAD DATA [LOCAL] INPATH &#39;filepath&#39; [OVERWRITE]  INTO TABLE tablename [PARTITION (partcol1&#x3D;val1, partcol2&#x3D;val2 ...)]   LOCAL 关键字代表从本地文件系统加载文件，省略则代表从 HDFS 上加载文件：  从本地文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive常用DML操作">
+<meta property="og:url" content="http://example.com/2022/06/23/Hive-DML/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hive常用DML操作1. 加载文件数据到表语法： LOAD DATA [LOCAL] INPATH &#39;filepath&#39; [OVERWRITE]  INTO TABLE tablename [PARTITION (partcol1&#x3D;val1, partcol2&#x3D;val2 ...)]   LOCAL 关键字代表从本地文件系统加载文件，省略则代表从 HDFS 上加载文件：  从本地文">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-23T02:06:54.000Z">
+<meta property="article:modified_time" content="2023-09-05T02:48:30.563Z">
+<meta property="article:author" content="zhangqiang">
+<meta property="article:tag" content="Hive">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>zhangqiang</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/zq-dream"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:zqiang918@gmail.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=473436216&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(20)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="工具">
+                        
+                        工具
+                        <small>(12)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="大数据">
+                        
+                        大数据
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="基础">
+                        
+                        基础
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="性能调优">
+                        
+                        性能调优
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Hive">
+                        
+                        Hive
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="20">
+<input type="hidden" id="yelog_site_word_count" value="11.6k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>转载</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>github</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hadoop</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hdfs</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Hive</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jupyter notebook</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>miniconda</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mysql</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PHP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ssh</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>yum</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 Hive "
+           href="/2022/06/23/Hive-DML/"
+           data-tag="Hive"
+           data-author="" >
+            <span class="post-title" title="Hive常用DML操作">Hive常用DML操作</span>
+            <span class="post-date" title="2022-06-23 10:06:54">2022/06/23</span>
+        </a>
+        
+        <a  class="全部文章 Hive "
+           href="/2022/06/23/Hive-DDL/"
+           data-tag="Hive"
+           data-author="" >
+            <span class="post-title" title="Hive常用DDL操作">Hive常用DDL操作</span>
+            <span class="post-date" title="2022-06-23 09:11:59">2022/06/23</span>
+        </a>
+        
+        <a  class="全部文章 性能调优 "
+           href="/2022/05/25/Oracle%E8%B0%83%E4%BC%98/"
+           data-tag="Oracle"
+           data-author="" >
+            <span class="post-title" title="Oracle调优">Oracle调优</span>
+            <span class="post-date" title="2022-05-25 14:02:45">2022/05/25</span>
+        </a>
+        
+        <a  class="全部文章 基础 "
+           href="/2022/05/23/Centos7-%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AEsudo%E5%85%8D%E5%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Centos7 普通用户配置sudo免密">Centos7 普通用户配置sudo免密</span>
+            <span class="post-date" title="2022-05-23 18:35:50">2022/05/23</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2022/05/23/%E9%85%8D%E7%BD%AESSH%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/"
+           data-tag="ssh"
+           data-author="" >
+            <span class="post-title" title="配置SSH免密登录">配置SSH免密登录</span>
+            <span class="post-date" title="2022-05-23 13:03:00">2022/05/23</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2022/05/13/BaiduPCS-Go-linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%EF%BC%8C%E4%BB%8E%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E4%B8%8A%E4%BC%A0%E3%80%81%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BaiduPCS-Go(linux环境下使用命令行，从百度网盘上传、下载数据)">BaiduPCS-Go(linux环境下使用命令行，从百度网盘上传、下载数据)</span>
+            <span class="post-date" title="2022-05-13 12:24:25">2022/05/13</span>
+        </a>
+        
+        <a  class="全部文章 基础 "
+           href="/2022/05/12/shell%E8%84%9A%E6%9C%AC%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="shell"
+           data-author="" >
+            <span class="post-title" title="shell脚本常用命令">shell脚本常用命令</span>
+            <span class="post-date" title="2022-05-12 11:07:22">2022/05/12</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2022/05/10/linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%EF%BC%8C%E4%BB%8E%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E4%B8%8A%E4%BC%A0%E3%80%81%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE%EF%BC%88bypy%EF%BC%89/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="linux环境下使用命令行，从百度网盘上传、下载数据（bypy）">linux环境下使用命令行，从百度网盘上传、下载数据（bypy）</span>
+            <span class="post-date" title="2022-05-10 13:40:41">2022/05/10</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2022/05/07/install-PHP-FPM-7-4/"
+           data-tag="PHP"
+           data-author="" >
+            <span class="post-title" title="安装 PHP-FPM 7.4">安装 PHP-FPM 7.4</span>
+            <span class="post-date" title="2022-05-07 10:28:12">2022/05/07</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2022/05/06/%E5%AE%89%E8%A3%85-Apache-Web-%E6%9C%8D%E5%8A%A1%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安装 Apache Web 服务器">安装 Apache Web 服务器</span>
+            <span class="post-date" title="2022-05-06 16:44:01">2022/05/06</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2022/05/06/%E5%AE%89%E8%A3%85-MariaDB-10/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="安装 MariaDB 10">安装 MariaDB 10</span>
+            <span class="post-date" title="2022-05-06 16:41:47">2022/05/06</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2022/05/06/%E5%9C%A8-CentOS-7-%E4%B8%8A%E5%AE%89%E8%A3%85Filerun/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="在 CentOS 7 上安装Filerun">在 CentOS 7 上安装Filerun</span>
+            <span class="post-date" title="2022-05-06 16:41:00">2022/05/06</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2022/05/06/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81IP%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="虚拟机静态IP配置">虚拟机静态IP配置</span>
+            <span class="post-date" title="2022-05-06 16:39:53">2022/05/06</span>
+        </a>
+        
+        <a  class="全部文章 基础 "
+           href="/2022/05/06/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85JDK/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="Linux环境下安装JDK">Linux环境下安装JDK</span>
+            <span class="post-date" title="2022-05-06 13:54:39">2022/05/06</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2022/04/28/github-back-hexo/"
+           data-tag="github,hexo"
+           data-author="" >
+            <span class="post-title" title="在github上备份hexo">在github上备份hexo</span>
+            <span class="post-date" title="2022-04-28 16:20:11">2022/04/28</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2022/04/28/yum-new-source/"
+           data-tag="yum"
+           data-author="" >
+            <span class="post-title" title="yum使用aliyun的源,下载更快">yum使用aliyun的源,下载更快</span>
+            <span class="post-date" title="2022-04-28 14:57:49">2022/04/28</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2022/04/28/install-hexo/"
+           data-tag="github,hexo"
+           data-author="" >
+            <span class="post-title" title="使用Hexo+Github pages搭建博客">使用Hexo+Github pages搭建博客</span>
+            <span class="post-date" title="2022-04-28 14:39:01">2022/04/28</span>
+        </a>
+        
+        <a  class="全部文章 大数据 "
+           href="/2022/04/19/hadoop-hdfs/"
+           data-tag="hadoop,hdfs,转载"
+           data-author="" >
+            <span class="post-title" title="(转载)图解HDFS存储原理 漫画 中文">(转载)图解HDFS存储原理 漫画 中文</span>
+            <span class="post-date" title="2022-04-19 14:39:01">2022/04/19</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2022/04/19/install-miniconda-jupyterNotebook/"
+           data-tag="miniconda,jupyter notebook,python"
+           data-author="" >
+            <span class="post-title" title="安装miniconda和jupyter Notebook">安装miniconda和jupyter Notebook</span>
+            <span class="post-date" title="2022-04-19 14:39:01">2022/04/19</span>
+        </a>
+        
+        <a  class="全部文章 基础 "
+           href="/2022/04/19/linux-command/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="linux常用命令">linux常用命令</span>
+            <span class="post-date" title="2022-04-19 09:41:02">2022/04/19</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-安装-MariaDB-10" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">安装 MariaDB 10</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="工具">工具</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">mysql</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2023-09-05 10:48:30'>2022-05-06 16:41</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:211</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-MariaDB-10"><span class="toc-text">安装 MariaDB 10</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="安装-MariaDB-10"><a href="#安装-MariaDB-10" class="headerlink" title="安装 MariaDB 10"></a>安装 MariaDB 10</h1><blockquote>
+<p>MariaDB数据库管理系统是MySQL的一个分支（这里一定要注意，分支分支），主要由开源社区在维护，采用GPL授权许可 MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。在存储引擎方面，使用XtraDB来代替MySQL的InnoDB。 MariaDB由MySQL的创始人Michael Widenius主导开发</p>
+</blockquote>
+<p>鉴于 CentOS 7 默认提供了较旧的 MariaDB，我们首先需要更新 yum 存储库</p>
+<pre><code class="shell">vim /etc/yum.repos.d/MariaDB10.repo  
+</code></pre>
+<p>添加以下配置</p>
+<pre><code class="shell">[mariadb]
+name = MariaDB
+baseurl = http://mirrors.ustc.edu.cn/mariadb/yum/10.3/centos7-amd64/
+gpgkey=http://mirrors.ustc.edu.cn/mariadb/yum/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+</code></pre>
+<p>安装并运行</p>
+<pre><code class="shell">yum install -y mariadb-server mariadb  
+systemctl start mariadb  
+</code></pre>
+<p>开启自启动</p>
+<pre><code class="shell">systemctl enable mariadb.service  
+</code></pre>
+<p>运行MariaDB的脚本，设置root密码、根据提示配置一些规则</p>
+<pre><code class="shell">mysql_secure_installation
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 11 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2022
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
