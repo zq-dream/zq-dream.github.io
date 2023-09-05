@@ -1,3 +1,12 @@
+---
+title: CentOS配置mailx邮箱
+date: 2023-09-05 15:28:25
+categories:
+- Linux
+tags:
+- mailx
+---
+
 ## 1、获取qq邮箱授权码：
 
 按下图的步骤获取授权码：  
