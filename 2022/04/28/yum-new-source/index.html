@@ -6,18 +6,21 @@
   <meta name="keywords" content=" yum ">
   <meta name="description" content="yum使用aliyun的源,下载更快 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Hive常用DML操作1. 加载文件数据到表语法： LOAD DATA [LOCAL] INPATH &#39;filepath&#39; [OVERWRITE]  INTO TABLE tablename [PARTITION (partcol1&#x3D;val1, partcol2&#x3D;val2 ...)]   LOCAL 关键字代表从本地文件系统加载文件，省略则代表从 HDFS 上加载文件：  从本地文">
+<meta name="description" content="1、获取qq邮箱授权码：按下图的步骤获取授权码： 2、在Linux系统上安装mailx服务：在命令行直接输入 mail 指令，如果提示找不到该指令，则表示你还没有安装该服务，请使用 yum 安装该服务： yum -y install mailx  3、添加qq邮箱的smtp配置：在系统文件 &#x2F;etc&#x2F;mail.rc 末尾追加下面内容（按实际情况修改成你的账号和授权码）： set from&#x3D;账号@q">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hive常用DML操作">
-<meta property="og:url" content="http://example.com/2022/06/23/Hive-DML/index.html">
+<meta property="og:title" content="install-mailx">
+<meta property="og:url" content="http://example.com/2023/09/05/install-mailx/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Hive常用DML操作1. 加载文件数据到表语法： LOAD DATA [LOCAL] INPATH &#39;filepath&#39; [OVERWRITE]  INTO TABLE tablename [PARTITION (partcol1&#x3D;val1, partcol2&#x3D;val2 ...)]   LOCAL 关键字代表从本地文件系统加载文件，省略则代表从 HDFS 上加载文件：  从本地文">
+<meta property="og:description" content="1、获取qq邮箱授权码：按下图的步骤获取授权码： 2、在Linux系统上安装mailx服务：在命令行直接输入 mail 指令，如果提示找不到该指令，则表示你还没有安装该服务，请使用 yum 安装该服务： yum -y install mailx  3、添加qq邮箱的smtp配置：在系统文件 &#x2F;etc&#x2F;mail.rc 末尾追加下面内容（按实际情况修改成你的账号和授权码）： set from&#x3D;账号@q">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-23T02:06:54.000Z">
-<meta property="article:modified_time" content="2023-09-05T02:48:30.563Z">
+<meta property="og:image" content="http://example.com/img/qqyx/qqyx1.jpg">
+<meta property="og:image" content="http://example.com/img/qqyx/qqyx2.jpg">
+<meta property="article:published_time" content="2023-09-05T07:28:25.000Z">
+<meta property="article:modified_time" content="2023-09-05T08:07:33.548Z">
 <meta property="article:author" content="zhangqiang">
-<meta property="article:tag" content="Hive">
+<meta property="article:tag" content="mailx">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/qqyx/qqyx1.jpg">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -115,7 +118,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(20)</small>
+                <small>(21)</small>
             
         </div>
     </li>
@@ -190,6 +193,20 @@
             
         
     
+        
+            
+                <li>
+                    <div data-rel="Linux">
+                        
+                        Linux
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -203,8 +220,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="20">
-<input type="hidden" id="yelog_site_word_count" value="11.6k">
+<input type="hidden" id="yelog_site_posts_number" value="21">
+<input type="hidden" id="yelog_site_word_count" value="12k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -290,6 +307,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mailx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>miniconda</a>
             </li>
         
@@ -331,6 +352,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Linux "
+           href="/2023/09/05/install-mailx/"
+           data-tag="mailx"
+           data-author="" >
+            <span class="post-title" title="install-mailx">install-mailx</span>
+            <span class="post-date" title="2023-09-05 15:28:25">2023/09/05</span>
+        </a>
         
         <a  class="全部文章 Hive "
            href="/2022/06/23/Hive-DML/"
