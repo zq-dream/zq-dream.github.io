@@ -104,5 +104,5 @@ theme: 3-hexo
 deploy: 
     type: git
     repo: git@github.com:zq-dream/zq-dream.github.io.git
-    branch: main
+    branch: hexo
     message: '站点更新:{{now("YYYY-MM-DD HH:mm:ss")}}'

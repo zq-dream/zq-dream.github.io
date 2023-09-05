@@ -69,7 +69,7 @@ menu:
 # 文末声明
 article_txt: 11
 
-bottom_text: ©2022
+bottom_text: ©2023
 # 自定义页面最下方的站点版权信息
 # 如果不填，则自定义为 ©2017 author (这个author为hexo根目录_config.yml中配置的)
 
@@ -80,7 +80,7 @@ miit:
   url: http://beian.miit.gov.cn/ # 默认链接为 http://beian.miit.gov.cn/
 
 
-reward: true
+reward: false
 # true 开启打赏功能
 
 searchAll: false
@@ -96,7 +96,7 @@ searchAll: false
 copyright: false
 # Copyright info. of post | 文末版权信息
 
-word_count: true
+word_count: false
 # true 开启字数统计
 # 开启此功能需要安装插件 ：在 hexo根目录 执行npm i hexo-wordcount --save
 
@@ -124,7 +124,7 @@ article_list:
 
 # 文章列表背景图
 article_bg_img:
-  on: false # 是否开启
+  on: true # 是否开启
   src: https://i.loli.net/2019/07/22/5d3521411f3f169375.png
   opacity: 0.3 # 背景图透明度，范围 0 ～ 1
 
