@@ -14,7 +14,7 @@
 <meta property="og:description" content="left join on 和 where 条件放置的区别总结：  对于left join，不管on后面跟什么条件，左表的数据全部查出来，因此要想过滤需把条件放到where后面。 对于inner join，满足on后面的条件表的数据才能查出，可以起到过滤作用。也可以把条件放到where后面。  数据库在通过连接两张或多张表来返回记录时，都会生成一张中间的临时表，然后再将这张临时表返回给用户。 在使用">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-06T09:07:40.000Z">
-<meta property="article:modified_time" content="2023-09-06T09:09:13.246Z">
+<meta property="article:modified_time" content="2023-09-06T09:13:53.063Z">
 <meta property="article:author" content="zhangqiang">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -613,7 +613,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-09-06 17:09:13'>2023-09-06 17:07</time>
+            发布时间 : <time class="date" title='最后更新: 2023-09-06 17:13:53'>2023-09-06 17:07</time>
         
     </div>
     <div class="article-meta">
@@ -712,10 +712,12 @@
 </tr>
 </tbody></table>
 <p>分析下面两条 sql：</p>
-<pre><code>select \* from tab1 left join tab2 on (tab1.size = tab2.size) where tab2.name=&#39;aaa&#39;;
+<pre><code>select * from tab1 left join tab2 on (tab1.size = tab2.size) where tab2.name=&#39;aaa&#39;;
 </code></pre>
-<pre><code>select \* from tab1 left join tab2 on (tab1.size = tab2.size and tab2.name=&#39;aaa&#39;);
+<p><a href="/img/MySQL/leftjoinon_where1.jpg">!sql1</a></p>
+<pre><code>select * from tab1 left join tab2 on (tab1.size = tab2.size and tab2.name=&#39;aaa&#39;);
 </code></pre>
+<p><a href="/img/MySQL/leftjoinon_where2.jpg">!sql2</a></p>
 <p>其实以上结果的关键原因就是 <code>left join</code>, <code>right join</code>, <code>full join</code> 的特殊性，<strong>不管 <code>on</code> 上的条件是否为真都会返回 <code>left</code> 或 <code>right</code> 表中的记录</strong>，<code>full</code> 则具有 <code>left</code> 和 <code>right</code> 的特性的并集。 而 <code>inner join</code> 没这个特殊性，则条件放在 <code>on</code> 中和 <code>where</code> 中，返回的结果集是相同的。</p>
 
       
