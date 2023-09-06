@@ -117,6 +117,12 @@ set global validate_password.length=1;
 update mysql.user set host='%' where user ='root';
 ```
 
+重新加载授权信息
+
+```mysql
+FLUSH PRIVILEGES;
+```
+
 授权命令
 
 ```mysql
