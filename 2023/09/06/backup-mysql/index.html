@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>虚拟机静态IP配置 | Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="虚拟机静态IP配置 | Hexo">
+  <title>mysql库表备份与恢复 | Hexo</title>
+  <meta name="keywords" content=" MySQL , backup ">
+  <meta name="description" content="mysql库表备份与恢复 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="执行环境Centos7.9 MySQL 备份mysqldump -uroot -p&#39;dream&#39; -h 127.0.0.1 -P 3306 \     --routines --events --triggers --no-data \     --add-drop-database --add-drop-table --all-databases \     &gt; backu">
 <meta property="og:type" content="article">
@@ -579,9 +579,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-虚拟机静态IP配置" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-backup-mysql" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">虚拟机静态IP配置</h1>
+        <h1 class="article-title">mysql库表备份与恢复</h1>
     
     <div class="article-meta">
         
@@ -591,15 +591,24 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="工具">工具</a>
+            <a  data-rel="MySQL">MySQL</a>
             
         </span>
         
         
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">MySQL</a>
+            
+            <a class="color2">backup</a>
+            
+        </span>
+        
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-09-05 10:48:30'>2022-05-06 16:39</time>
+            发布时间 : <time class="date" title='最后更新: 2023-09-06 16:20:23'>2023-09-06 16:00</time>
         
     </div>
     <div class="article-meta">
@@ -621,7 +630,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="toc-text">执行环境</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD"><span class="toc-text">备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D"><span class="toc-text">恢复</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -637,25 +646,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>编辑网络配置文件</p>
-<pre><code class="shell">vim /etc/sysconfig/network-scripts/ifcfg-eth33
+        <h3 id="执行环境"><a href="#执行环境" class="headerlink" title="执行环境"></a>执行环境</h3><p>Centos7.9</p>
+<p>MySQL</p>
+<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><pre><code class="mysql">mysqldump -uroot -p&#39;dream&#39; -h 127.0.0.1 -P 3306 \
+    --routines --events --triggers --no-data \
+    --add-drop-database --add-drop-table --all-databases \
+    &gt; backup.sql
 </code></pre>
-<p>添加如下网络配置：</p>
+<p><code>mysqldump</code>命令有很多其他参数，可以根据需要进行使用。以下是一些常用的参数：</p>
 <ul>
-<li>IPADDR 需要和宿主机同一个网段；</li>
-<li>GATEWAY 保持和宿主机一致；<pre><code class="shell">TYPE=Ethernet
-UUID=7165afdf-2758-48aa-83e7-03f36d2eb256
-DEVICE=ens0
-ONBOOT=yes
-BOOTPROTO=static
-IPADDR=192.168.141.130
-GATEWAY=192.168.141.2
-DNS1=8.8.8.8
-</code></pre>
-重启网络服务<pre><code class="shell">systemctl restart network
-</code></pre>
-</li>
+<li><code>-h</code> 或 <code>--host</code>：指定要连接的MySQL服务器的主机名或IP地址。</li>
+<li><code>-P</code> 或 <code>--port</code>：指定要连接的MySQL服务器的端口号。</li>
+<li><code>-u</code> 或 <code>--user</code>：指定要连接的MySQL服务器的用户名。</li>
+<li><code>-p</code> 或 <code>--password</code>：指定要连接的MySQL服务器的密码。注意，在指定密码时，不要在参数后面留有空格，否则可能导致密码不被正确识别。</li>
+<li><code>--databases</code>：指定要备份的多个数据库，使用空格分隔。</li>
+<li><code>--tables</code>：指定要备份的特定表，使用逗号分隔。</li>
+<li><code>--single-transaction</code>：在备份过程中使用单个事务，以确保数据的一致性。</li>
+<li><code>--lock-tables</code>：在备份过程中锁定所有要备份的表，以确保数据的一致性。</li>
+<li><code>--no-create-db</code>：在备份过程中不包括创建数据库的语句。</li>
+<li><code>--no-create-info</code>：在备份过程中不包括创建表的语句。</li>
+<li><code>--add-drop-database</code>：在备份过程中包括删除数据库的语句。</li>
+<li><code>--add-drop-table</code>：在备份过程中包括删除表的语句。</li>
+<li><code>--compress</code>：在备份过程中使用压缩来减小备份文件的大小。</li>
+<li><code>--verbose</code>：在备份过程中显示详细的输出信息。</li>
+<li><code>--routines</code>：导出备份时包括存储过程。</li>
+<li><code>--events</code>：导出备份时包括事件。</li>
+<li><code>--triggers</code>：导出备份时包括触发器。</li>
+<li><code>--no-data</code>：导出备份时不包括实际数据，只包括数据库结构。</li>
 </ul>
+<p>这只是一小部分常用的<code>mysqldump</code>参数，可以通过查阅<code>mysqldump</code>的官方文档或使用<code>mysqldump --help</code>命令来获取更多详细的参数信息。</p>
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><p>执行导出的备份sql文件</p>
+<pre><code>mysql -uroot -pdream &lt; backup.sql
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 11 </span>

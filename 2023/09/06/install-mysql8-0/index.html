@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>虚拟机静态IP配置 | Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="虚拟机静态IP配置 | Hexo">
+  <title>安装mysql8.0，配置密码策略，允许远程登录 | Hexo</title>
+  <meta name="keywords" content=" MySQL , install ">
+  <meta name="description" content="安装mysql8.0，配置密码策略，允许远程登录 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="执行环境Centos7.9 MySQL 备份mysqldump -uroot -p&#39;dream&#39; -h 127.0.0.1 -P 3306 \     --routines --events --triggers --no-data \     --add-drop-database --add-drop-table --all-databases \     &gt; backu">
 <meta property="og:type" content="article">
@@ -579,9 +579,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-虚拟机静态IP配置" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-install-mysql8-0" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">虚拟机静态IP配置</h1>
+        <h1 class="article-title">安装mysql8.0，配置密码策略，允许远程登录</h1>
     
     <div class="article-meta">
         
@@ -591,15 +591,24 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="工具">工具</a>
+            <a  data-rel="MySQL">MySQL</a>
             
         </span>
         
         
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">MySQL</a>
+            
+            <a class="color3">install</a>
+            
+        </span>
+        
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-09-05 10:48:30'>2022-05-06 16:39</time>
+            发布时间 : <time class="date" title='最后更新: 2023-09-06 16:20:23'>2023-09-06 15:27</time>
         
     </div>
     <div class="article-meta">
@@ -621,7 +630,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E5%AE%89%E8%A3%85"><span class="toc-text">MySQL安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83"><span class="toc-text">安装环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0-MySQL-Yum-%E5%AD%98%E5%82%A8%E5%BA%93"><span class="toc-text">添加 MySQL Yum 存储库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BB%A5%E4%B8%8B%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%8F%91%E5%B8%83%E5%8C%85"><span class="toc-text">使用以下命令安装下载的发布包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%8F%91%E5%B8%83%E7%B3%BB%E5%88%97"><span class="toc-text">选择发布系列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85MySQL"><span class="toc-text">安装MySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-MySQL-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">启动 MySQL 服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">初始配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE"><span class="toc-text">MySQL参数配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E5%BC%BA%E5%BA%A6%E7%AD%96%E7%95%A5"><span class="toc-text">配置密码强度策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%85%81%E8%AE%B8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5"><span class="toc-text">配置允许远程连接</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -637,25 +646,57 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>编辑网络配置文件</p>
-<pre><code class="shell">vim /etc/sysconfig/network-scripts/ifcfg-eth33
+        <h2 id="MySQL安装"><a href="#MySQL安装" class="headerlink" title="MySQL安装"></a>MySQL安装</h2><h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><p>Centos7.9</p>
+<h3 id="添加-MySQL-Yum-存储库"><a href="#添加-MySQL-Yum-存储库" class="headerlink" title="添加 MySQL Yum 存储库"></a>添加 MySQL Yum 存储库</h3><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/repo/yum/">MySQL 开发人员专区中的 下载 MySQL Yum 存储库页面</a></p>
+<h3 id="使用以下命令安装下载的发布包"><a href="#使用以下命令安装下载的发布包" class="headerlink" title="使用以下命令安装下载的发布包"></a>使用以下命令安装下载的发布包</h3><pre><code class="shell">yum install mysql80-community-release-el7-10.noarch.rpm
 </code></pre>
-<p>添加如下网络配置：</p>
-<ul>
-<li>IPADDR 需要和宿主机同一个网段；</li>
-<li>GATEWAY 保持和宿主机一致；<pre><code class="shell">TYPE=Ethernet
-UUID=7165afdf-2758-48aa-83e7-03f36d2eb256
-DEVICE=ens0
-ONBOOT=yes
-BOOTPROTO=static
-IPADDR=192.168.141.130
-GATEWAY=192.168.141.2
-DNS1=8.8.8.8
+<p>可以通过以下命令检查 MySQL Yum 存储库是否已成功添加</p>
+<pre><code class="shell">yum repolist enabled | grep &quot;mysql.*-community.*&quot;
 </code></pre>
-重启网络服务<pre><code class="shell">systemctl restart network
+<h3 id="选择发布系列"><a href="#选择发布系列" class="headerlink" title="选择发布系列"></a>选择发布系列</h3><p>使用MySQL Yum存储库时，默认选择安装最新的，安装最新版本，无需进行任何配置</p>
+<p>使用此命令查看 MySQL Yum 存储库中的所有子存储库，并查看其中哪些子存储库已启用或禁用</p>
+<pre><code class="shell">yum repolist all | grep mysql
 </code></pre>
-</li>
-</ul>
+<h3 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h3><pre><code class="shell">yum install mysql-community-server
+</code></pre>
+<p>这将安装 MySQL 服务器的软件包 ( <code>mysql-community-server</code>) 以及运行服务器所需的组件的软件包，包括客户端的软件包 ( <code>mysql-community-client</code>)、客户端和服务器的常见错误消息和字符集 ( <code>mysql-community-common</code>) 以及共享客户端库 ( <code>mysql-community-libs</code>) 。</p>
+<h3 id="启动-MySQL-服务器"><a href="#启动-MySQL-服务器" class="headerlink" title="启动 MySQL 服务器"></a>启动 MySQL 服务器</h3><p>使用以下命令启动 MySQL 服务器</p>
+<pre><code class="shell">systemctl start mysqld
+</code></pre>
+<p>可以使用以下命令检查MySQL服务器的状态</p>
+<pre><code class="shell">systemctl status mysqld
+</code></pre>
+<h3 id="初始配置"><a href="#初始配置" class="headerlink" title="初始配置"></a>初始配置</h3><p>超级用户帐户<code>&#39;root&#39;@&#39;localhost</code>已创建。<code>root</code>用户的密码存储在日志文件中。要显示它，请使用以下命令</p>
+<pre><code class="shell">grep &#39;temporary password&#39; /var/log/mysqld.log
+</code></pre>
+<p>使用生成的临时密码登录</p>
+<pre><code class="shell">mysql -uroot -p
+</code></pre>
+<p>修改密码，默认密码策略<code>validate_password</code>要求密码至少包含1个大写字母、1个小写字母、1个数字和1个特殊字符，并且密码总长度至少为8个字符</p>
+<pre><code class="mysql">ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;MyNewPass4!&#39;;
+</code></pre>
+<h2 id="MySQL参数配置"><a href="#MySQL参数配置" class="headerlink" title="MySQL参数配置"></a>MySQL参数配置</h2><h3 id="配置密码强度策略"><a href="#配置密码强度策略" class="headerlink" title="配置密码强度策略"></a>配置密码强度策略</h3><p>查看MySQL密码策略相关配置</p>
+<pre><code class="mysql">SHOW VARIABLES LIKE &#39;validate_password%&#39;;
+</code></pre>
+<p>修改MySQL密码策略</p>
+<pre><code class="mysql">set global validate_password.policy=0;
+set global validate_password.length=1;
+</code></pre>
+<h3 id="配置允许远程连接"><a href="#配置允许远程连接" class="headerlink" title="配置允许远程连接"></a>配置允许远程连接</h3><p>更新域属性，’%’表示允许任意IP地址访问</p>
+<pre><code class="mysql">update mysql.user set host=&#39;%&#39; where user =&#39;root&#39;;
+</code></pre>
+<p>授权命令</p>
+<pre><code class="mysql">GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39;WITH GRANT OPTION;
+</code></pre>
+<p>更改加密规则</p>
+<pre><code class="mysql">ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;dream&#39; PASSWORD EXPIRE NEVER; 
+</code></pre>
+<p>更改用户密码</p>
+<pre><code class="mysql">ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;dream&#39;; #更新用户密码
+</code></pre>
+<p>重新加载授权信息</p>
+<pre><code class="mysql">FLUSH PRIVILEGES;
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 11 </span>
