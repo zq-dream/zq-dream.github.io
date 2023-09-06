@@ -67,7 +67,7 @@ menu:
       type: 3  # 跳转类型 3：打开新的tab页
 
 # 文末声明
-article_txt: 11
+article_txt: 收集到的任何资料都不能只是看看，而必须自己手把手，动手去整理、去归类，去建立新的结构，这个信息收集与处理的过程更重要。
 
 bottom_text: ©2023
 # 自定义页面最下方的站点版权信息
@@ -104,7 +104,7 @@ word_count: false
 # 不蒜子网站计数设置
 # http://ibruce.info/2015/04/04/busuanzi/
 visit_counter:
-  on: true
+  on: false
   site_visit: true
   page_visit: true
 
