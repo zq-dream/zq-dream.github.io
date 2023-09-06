@@ -49,12 +49,12 @@ eg.
 select * from tab1 left join tab2 on (tab1.size = tab2.size) where tab2.name='aaa';
 ```
 
-[!sql1](/img/MySQL/leftjoinon_where1.jpg)
+![sql1](/img/MySQL/leftjoinon_where1.jpg)
 
 ```
 select * from tab1 left join tab2 on (tab1.size = tab2.size and tab2.name='aaa');
 ```
 
-[!sql2](/img/MySQL/leftjoinon_where2.jpg)
+![sql2](/img/MySQL/leftjoinon_where2.jpg)
 
 其实以上结果的关键原因就是 `left join`, `right join`, `full join` 的特殊性，**不管 `on` 上的条件是否为真都会返回 `left` 或 `right` 表中的记录**，`full` 则具有 `left` 和 `right` 的特性的并集。 而 `inner join` 没这个特殊性，则条件放在 `on` 中和 `where` 中，返回的结果集是相同的。
