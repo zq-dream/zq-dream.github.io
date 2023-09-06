@@ -608,7 +608,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-09-06 16:32:00'>2023-09-06 15:27</time>
+            发布时间 : <time class="date" title='最后更新: 2023-09-06 16:46:44'>2023-09-06 15:27</time>
         
     </div>
     <div class="article-meta">
@@ -687,6 +687,9 @@ set global validate_password.length=1;
 </code></pre>
 <h3 id="配置允许远程连接"><a href="#配置允许远程连接" class="headerlink" title="配置允许远程连接"></a>配置允许远程连接</h3><p>更新域属性，’%’表示允许任意IP地址访问</p>
 <pre><code class="mysql">update mysql.user set host=&#39;%&#39; where user =&#39;root&#39;;
+</code></pre>
+<p>重新加载授权信息</p>
+<pre><code class="mysql">FLUSH PRIVILEGES;
 </code></pre>
 <p>授权命令</p>
 <pre><code class="mysql">GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39;WITH GRANT OPTION;
