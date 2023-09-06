@@ -18,6 +18,12 @@ Centos7.9
 
 [MySQL 开发人员专区中的 下载 MySQL Yum 存储库页面](https://dev.mysql.com/downloads/repo/yum/)
 
+下载命令
+
+```shell
+wget https://repo.mysql.com//mysql80-community-release-el7-10.noarch.rpm
+```
+
 ### 使用以下命令安装下载的发布包
 
 ```shell
