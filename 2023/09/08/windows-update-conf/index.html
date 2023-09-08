@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>虚拟机静态IP配置 | Hexo</title>
+  <title>Windows 自动更新暂停「续杯」 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="虚拟机静态IP配置 | Hexo">
+  <meta name="description" content="Windows 自动更新暂停「续杯」 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Windows 自动更新暂停「续杯」按下 Win-R 打开「运行」对话框，在输入 cmd 后按下Ctrl-Shift-Enter，在弹出来的黑色窗口中输入下列代码，并敲击回车。 reg add “HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings” &#x2F;v FlightSettingsMaxPauseDays &#x2F;t reg_">
 <meta property="og:type" content="article">
@@ -615,9 +615,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-虚拟机静态IP配置" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-windows-update-conf" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">虚拟机静态IP配置</h1>
+        <h1 class="article-title">Windows 自动更新暂停「续杯」</h1>
     
     <div class="article-meta">
         
@@ -627,7 +627,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="工具">工具</a>
+            <a  data-rel="Windows">Windows</a>
             
         </span>
         
@@ -635,7 +635,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-09-05 10:48:30'>2022-05-06 16:39</time>
+            发布时间 : <time class="date" title='最后更新: 2023-09-08 11:12:47'>2023-09-08 11:09</time>
         
     </div>
     <div class="article-meta">
@@ -646,7 +646,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows-%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0%E6%9A%82%E5%81%9C%E3%80%8C%E7%BB%AD%E6%9D%AF%E3%80%8D"><span class="toc-text">Windows 自动更新暂停「续杯」</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -662,25 +662,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>编辑网络配置文件</p>
-<pre><code class="shell">vim /etc/sysconfig/network-scripts/ifcfg-eth33
+        <h1 id="Windows-自动更新暂停「续杯」"><a href="#Windows-自动更新暂停「续杯」" class="headerlink" title="Windows 自动更新暂停「续杯」"></a>Windows 自动更新暂停「续杯」</h1><p>按下 <code>Win-R</code> 打开「运行」对话框，在输入 <code>cmd</code> 后按下<code>Ctrl-Shift-Enter</code>，在弹出来的黑色窗口中输入下列代码，并敲击回车。</p>
+<pre><code class="shell">reg add “HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings” /v FlightSettingsMaxPauseDays /t reg_dword /d 3000 /f
 </code></pre>
-<p>添加如下网络配置：</p>
-<ul>
-<li>IPADDR 需要和宿主机同一个网段；</li>
-<li>GATEWAY 保持和宿主机一致；<pre><code class="shell">TYPE=Ethernet
-UUID=7165afdf-2758-48aa-83e7-03f36d2eb256
-DEVICE=ens0
-ONBOOT=yes
-BOOTPROTO=static
-IPADDR=192.168.141.130
-GATEWAY=192.168.141.2
-DNS1=8.8.8.8
-</code></pre>
-重启网络服务<pre><code class="shell">systemctl restart network
-</code></pre>
-</li>
-</ul>
+<p>打开「Windows 设置」，前往「更新和安全」-「Windows 更新」，点击「暂停更新 7 天」的按钮，直至满足暂停时长的需要。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 收集到的任何资料都不能只是看看，而必须自己手把手，动手去整理、去归类，去建立新的结构，这个信息收集与处理的过程更重要。 </span>
